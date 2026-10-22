@@ -6,12 +6,12 @@ Plain HTML, CSS and JavaScript. No build step, no installs.
 Double-click `index.html`. (Google Fonts need internet; the site still works offline with fallback fonts.)
 
 ## Edit your details (5 minutes)
-1. `js/config.js`: set your contact email and optional Formspree form ID.
-2. `index.html`: keep the services, tools and experience details accurate as you update them.
+1. `js/config.js`: your CV email is configured; add a Formspree form ID if you want direct form delivery.
+2. `index.html`: update your services, experience, education and skills when your CV changes.
 3. Your portrait is linked from the project folder as `WhatsApp Image 2026-10-06 at 1.30.26 AM.jpeg`. To change it, update the image path in the hero section of `index.html`.
 
 ## Replace sample work with real projects
-The three projects in `index.html` are clearly labeled concepts, not client work. Replace them with real projects as you complete them. Update each card's image, title, role, tools, description and category, and only publish results you can verify. The project dialog reads its content from the card's `data-*` attributes.
+The work section includes your Tableau dashboard and two experience highlights. The supplied SVG thumbnails are illustrative previews, not original project screenshots. Replace them with your own work samples when available. The project dialog reads its content from each card's `data-*` attributes.
 
 The reviews section is intentionally unscored until you have genuine client feedback. Add quotes or ratings only with the client's permission and never present invented reviews as real.
 
