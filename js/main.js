@@ -4,6 +4,25 @@
   const $$ = (s, el = document) => [...el.querySelectorAll(s)];
   const cfg = window.SITE_CONFIG || {};
 
+  /* Theme preference */
+  const themeToggle = $("#themeToggle"), themeIcon = $("#themeIcon"), themeColor = $("#themeColor");
+  const setTheme = (theme, persist = true) => {
+    const isDark = theme === "dark";
+    document.documentElement.dataset.theme = isDark ? "dark" : "light";
+    themeToggle.setAttribute("aria-pressed", isDark);
+    themeToggle.setAttribute("aria-label", isDark ? "Switch to light mode" : "Switch to dark mode");
+    themeToggle.title = isDark ? "Switch to light mode" : "Switch to dark mode";
+    themeIcon.setAttribute("href", isDark ? "#i-sun" : "#i-moon");
+    themeColor.content = isDark ? "#111a16" : "#f6f7f2";
+    if (persist) {
+      try { localStorage.setItem("wasim-theme", isDark ? "dark" : "light"); } catch {}
+    }
+  };
+  setTheme(document.documentElement.dataset.theme || "light", false);
+  themeToggle.addEventListener("click", () => {
+    setTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark");
+  });
+
   $("#year").textContent = new Date().getFullYear();
 
   /* Header: scrolled state + progress bar */

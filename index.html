@@ -5,11 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Wasim Ali | Digital Marketer &amp; Trainer</title>
   <meta name="description" content="Wasim Ali is a digital marketer and trainer from Gilgit-Baltistan, Pakistan, working in social media, content strategy, brand promotion and practical skills training.">
-  <meta name="theme-color" content="#f5f3ed">
+  <meta name="theme-color" id="themeColor" content="#f6f7f2">
   <meta property="og:title" content="Wasim Ali | Digital Marketer &amp; Trainer">
   <meta property="og:description" content="Digital marketing, social media and practical skills training from Gilgit-Baltistan, Pakistan.">
   <meta property="og:type" content="website">
+  <link rel="icon" href="assets/favicon.png" type="image/png" sizes="64x64">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <script>
+    try {
+      const savedTheme = localStorage.getItem("wasim-theme");
+      const systemTheme = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      document.documentElement.dataset.theme = savedTheme === "dark" || savedTheme === "light" ? savedTheme : systemTheme;
+    } catch {
+      document.documentElement.dataset.theme = "light";
+    }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -35,6 +45,9 @@
     <symbol id="i-ext" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5"/></symbol>
     <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
     <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16a1 1 0 011 1v10a1 1 0 01-1 1h-8l-5 4v-4H4a1 1 0 01-1-1V6a1 1 0 011-1z"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20.1 15.3A8.7 8.7 0 018.7 3.9 8.8 8.8 0 1020.1 15.3z"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-whatsapp" viewBox="0 0 24 24"><path d="M20.4 11.7a8.4 8.4 0 01-12.3 7.5L3 20l.9-4.8a8.4 8.4 0 1116.5-3.5z"/><path d="M8.1 7.8c.2-.5.5-.5.8-.5h.5c.2 0 .4.1.5.4l.7 1.7c.1.2.1.4-.1.6l-.5.6c-.2.2-.2.4 0 .7a7.5 7.5 0 003 2.7c.3.2.5.2.7-.1l.7-.8c.2-.2.4-.3.7-.2l1.6.8c.3.1.4.3.4.5 0 .3-.2 1.2-.7 1.6-.5.5-1.1.7-1.8.6-.7-.1-1.5-.3-2.5-.8a9.2 9.2 0 01-3.2-2.4 8.1 8.1 0 01-1.7-2.5c-.4-.9-.4-1.7-.1-2.3z"/></symbol>
   </defs>
 </svg>
 
@@ -56,6 +69,9 @@
       <a href="#reviews">Reviews</a>
       <a href="#contact" class="nav-cta">Let's talk</a>
     </nav>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark mode" aria-pressed="false" title="Switch to dark mode">
+      <svg class="ic" aria-hidden="true"><use id="themeIcon" href="#i-moon"/></svg>
+    </button>
     <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="nav" aria-label="Open menu">
       <span></span><span></span>
     </button>
@@ -73,6 +89,7 @@
         <p class="lead">I'm Wasim Ali, a digital marketer and trainer. I help brands communicate clearly through social media and product promotion, and make digital skills easier to learn.</p>
         <div class="actions">
           <a class="btn btn-primary" href="#contact">Get in touch <svg class="ic"><use href="#i-arrow"/></svg></a>
+          <a class="btn btn-whatsapp" href="https://wa.me/923555601356" target="_blank" rel="noopener noreferrer"><svg class="ic" aria-hidden="true"><use href="#i-whatsapp"/></svg>WhatsApp me</a>
           <a class="btn btn-ghost" href="#work">View my work</a>
         </div>
         <p class="hero-tags" aria-label="Core skills">Social media <span>·</span> Content strategy <span>·</span> Data visualization</p>
@@ -308,7 +325,9 @@
           <li><span>Location</span><strong>Gilgit-Baltistan, Pakistan</strong></li>
           <li><span>Email</span><a data-email href="mailto:waseemwaso0786@gmail.com">waseemwaso0786@gmail.com</a></li>
           <li><span>Phone</span><a href="tel:+923555601356">0355 5601356</a></li>
+          <li><span>Upwork</span><a href="https://www.upwork.com/freelancers/~011c6a310965ff72b2?mp_source=share" target="_blank" rel="noopener noreferrer">View my Upwork profile <svg class="ic" aria-hidden="true"><use href="#i-ext"/></svg></a></li>
         </ul>
+        <a class="btn btn-whatsapp contact-whatsapp" href="https://wa.me/923555601356" target="_blank" rel="noopener noreferrer"><svg class="ic" aria-hidden="true"><use href="#i-whatsapp"/></svg>Chat with me on WhatsApp</a>
       </div>
 
       <form class="form glass" id="form" novalidate>
