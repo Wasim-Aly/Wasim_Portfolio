@@ -3,6 +3,13 @@
   const $ = (s, el = document) => el.querySelector(s);
   const $$ = (s, el = document) => [...el.querySelectorAll(s)];
   const cfg = window.SITE_CONFIG || {};
+  const projectFrames = [$("#dashboardFrame"), $("#socialFrame"), $("#promotionFrame"), $("#threadGlowFrame")].filter(Boolean);
+  const syncDashboardTheme = () => {
+    projectFrames.forEach(frame => frame.contentWindow?.postMessage({
+      type: "portfolio-theme",
+      theme: document.documentElement.dataset.theme
+    }, "*"));
+  };
 
   /* Theme preference */
   const themeToggle = $("#themeToggle"), themeIcon = $("#themeIcon"), themeColor = $("#themeColor");
@@ -14,6 +21,7 @@
     themeToggle.title = isDark ? "Switch to light mode" : "Switch to dark mode";
     themeIcon.setAttribute("href", isDark ? "#i-sun" : "#i-moon");
     themeColor.content = isDark ? "#111a16" : "#f6f7f2";
+    syncDashboardTheme();
     if (persist) {
       try { localStorage.setItem("wasim-theme", isDark ? "dark" : "light"); } catch {}
     }
@@ -21,6 +29,12 @@
   setTheme(document.documentElement.dataset.theme || "light", false);
   themeToggle.addEventListener("click", () => {
     setTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark");
+  });
+  projectFrames.forEach(frame => frame.addEventListener("load", syncDashboardTheme));
+  addEventListener("message", e => {
+    const frame = projectFrames.find(item => item.contentWindow === e.source);
+    if (!frame || e.data?.type !== "dashboard-height" || !Number.isFinite(e.data.height)) return;
+    frame.style.height = Math.max(660, Math.ceil(e.data.height)) + "px";
   });
 
   $("#year").textContent = new Date().getFullYear();
@@ -67,15 +81,19 @@
 
   /* Project dialog */
   const dlg = $("#dlg");
-  projects.forEach(p => $(".proj-btn", p).addEventListener("click", () => {
-    $("#dlgImg").src = $("img", p).src;
-    $("#dlgImg").alt = $("img", p).alt;
-    $("#dlgTitle").textContent = p.dataset.title;
-    $("#dlgRole").textContent = p.dataset.role;
-    $("#dlgTools").textContent = p.dataset.tools;
-    $("#dlgDesc").textContent = p.dataset.desc;
-    dlg.showModal();
-  }));
+  projects.forEach(p => {
+    const button = $(".proj-btn", p);
+    if (!button) return;
+    button.addEventListener("click", () => {
+      $("#dlgImg").src = $("img", p).src;
+      $("#dlgImg").alt = $("img", p).alt;
+      $("#dlgTitle").textContent = p.dataset.title;
+      $("#dlgRole").textContent = p.dataset.role;
+      $("#dlgTools").textContent = p.dataset.tools;
+      $("#dlgDesc").textContent = p.dataset.desc;
+      dlg.showModal();
+    });
+  });
   $("#dlgClose").addEventListener("click", () => dlg.close());
   dlg.addEventListener("click", e => { if (e.target === dlg) dlg.close(); });
 

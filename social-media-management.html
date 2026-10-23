@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>Social Media Management</title>
+<style>
+:root{--bg:#f8f6f3;--surface:#fff;--text:#1d1a17;--muted:#6a645d;--border:#e6e1da;--accent:#e4572e;--p1:#e4572e;--p2:#2a9d8f;--p3:#7b5cf0;--p4:#e0a21b;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14120f;--surface:#1e1b17;--text:#f3efe9;--muted:#a39b91;--border:#322d27;--accent:#ff7a52;--p1:#ff7a52;--p2:#4cc3b4;--p3:#9d86ff;--p4:#f0bd48;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#14120f;--surface:#1e1b17;--text:#f3efe9;--muted:#a39b91;--border:#322d27;--accent:#ff7a52;--p1:#ff7a52;--p2:#4cc3b4;--p3:#9d86ff;--p4:#f0bd48;color-scheme:dark}
+:root[data-theme="light"]{color-scheme:light}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:1040px;margin:0 auto;padding:20px 16px 24px}
+h1{font-size:1.6rem;margin:0 0 4px}
+h2{font-size:1rem;margin:0 0 12px}
+.sub{color:var(--muted);margin:0 0 20px;font-size:.92rem}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:14px}
+.flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:10px}
+.step{border:1px solid var(--border);border-radius:10px;padding:12px}
+.step b{display:block;color:var(--accent);font-size:.75rem;letter-spacing:.06em;text-transform:uppercase}
+.step span{font-size:.85rem;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.chip{font:inherit;font-size:.82rem;border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:999px;padding:5px 12px;cursor:pointer;display:flex;align-items:center;gap:6px}
+.chip i{width:9px;height:9px;border-radius:50%;display:inline-block}
+.chip.on{border-color:var(--text);font-weight:600}
+.split{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(min(100%,260px),1fr);gap:14px}
+@media(max-width:760px){.split{grid-template-columns:1fr}}
+.scroll{overflow-x:auto}
+.cal{display:grid;grid-template-columns:repeat(7,minmax(70px,1fr));gap:4px;min-width:520px}
+.dh{font-size:.72rem;color:var(--muted);text-align:center}
+.day{min-height:78px;border:1px solid var(--border);border-radius:8px;padding:4px;font-size:.7rem;color:var(--muted)}
+.post{display:block;width:100%;text-align:left;font:inherit;font-size:.7rem;margin-top:3px;padding:3px 5px;border-radius:5px;border:0;color:#fff;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.post.sel{outline:2px solid var(--text);outline-offset:1px}
+.post.dim{opacity:.25}
+.phone{border:1px solid var(--border);border-radius:16px;overflow:hidden;background:var(--bg)}
+.ph-h{display:flex;align-items:center;gap:8px;padding:10px 12px;font-size:.85rem;font-weight:600}
+.av{width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-size:.75rem}
+.art{aspect-ratio:1/1;display:grid;place-items:center;text-align:center;padding:24px;color:#fff;font-weight:700;font-size:1.3rem;line-height:1.25}
+.cap{padding:10px 12px;font-size:.85rem}
+.meta{padding:0 12px 12px;font-size:.75rem;color:var(--muted)}
+.brand{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:14px}
+.sw{display:flex;gap:6px;margin-bottom:8px}
+.sw span{flex:1;height:36px;border-radius:8px}
+ul{margin:0;padding-left:18px;color:var(--muted);font-size:.88rem}
+.msg{border-top:1px solid var(--border);padding:12px 0;display:grid;gap:6px}
+.msg:first-of-type{border-top:0}
+.who{font-size:.8rem;color:var(--muted)}
+.reply{background:var(--bg);border-left:3px solid var(--accent);padding:8px 10px;border-radius:0 8px 8px 0;font-size:.88rem}
+.tag{font-size:.7rem;background:var(--border);padding:2px 8px;border-radius:999px;color:var(--muted);justify-self:start}
+.note{color:var(--muted);font-size:.78rem;margin:14px 0 0}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media(max-width:380px){.wrap{padding-inline:10px}.card{padding:12px}}
+</style>
+</head>
+<body>
+<main class="wrap" id="showcase">
+<h1>Social Media Management</h1>
+<p class="sub">Content planning, publishing and audience interaction · Asynclick experience showcase</p>
+
+<section class="card"><h2>My workflow</h2>
+<div class="flow">
+<div class="step"><b>1 · Plan</b><span>Monthly themes, content pillars and a publishing calendar.</span></div>
+<div class="step"><b>2 · Create</b><span>Graphics and captions that follow the brand look and tone.</span></div>
+<div class="step"><b>3 · Publish</b><span>Scheduling at consistent times across platforms.</span></div>
+<div class="step"><b>4 · Engage</b><span>Replying to comments and messages in the brand voice.</span></div>
+</div></section>
+
+<section class="card"><h2>Content calendar (sample month)</h2>
+<div class="chips" id="chips" role="group" aria-label="Filter calendar by content pillar"></div>
+<div class="split">
+<div class="scroll" tabindex="0" aria-label="Scrollable content calendar"><div class="cal" id="cal"></div></div>
+<div class="phone" id="prev" aria-live="polite"></div>
+</div></section>
+
+<section class="card"><h2>Brand consistency</h2>
+<div class="brand">
+<div><div class="sw" aria-label="Sample brand color palette"><span style="background:var(--p1)"></span><span style="background:var(--p2)"></span><span style="background:var(--p3)"></span><span style="background:var(--p4)"></span></div>
+<ul><li>One palette across every post</li><li>Consistent type and layout templates</li><li>Same logo placement and spacing</li></ul></div>
+<div><b style="font-size:.9rem">Tone of voice</b>
+<ul style="margin-top:6px"><li>Friendly and clear, never pushy</li><li>Short sentences, one idea per post</li><li>Always end with a simple call to action</li></ul></div>
+</div></section>
+
+<section class="card"><h2>Audience interaction (sample replies)</h2>
+<div class="msg"><span class="who">Comment · “Do you ship outside the city?”</span><span class="tag">Question</span><div class="reply">Yes, we do! Send us a message with your location and we’ll share the details. 😊</div></div>
+<div class="msg"><span class="who">Comment · “Love the new design!”</span><span class="tag">Praise</span><div class="reply">Thank you so much, that means a lot to the team! Stay tuned for more.</div></div>
+<div class="msg"><span class="who">Message · “My order is late.”</span><span class="tag">Concern</span><div class="reply">We’re sorry about that. Could you share your order number so we can check right away?</div></div>
+</section>
+<p class="note">All posts, captions and comments here are illustrative samples. This is not original campaign artwork, and no results or figures are claimed.</p>
+</main>
+<script>
+const P={Promo:'--p1',Educational:'--p2',Community:'--p3',Behind:'--p4'};
+const POSTS=[
+{d:2,p:'Promo',pf:'Instagram',t:'New arrivals',c:'Fresh look, same quality. Discover what’s new this week.'},
+{d:4,p:'Educational',pf:'Facebook',t:'3 quick tips',c:'Three simple tips to get more from your purchase. Save this post!'},
+{d:6,p:'Community',pf:'Instagram',t:'Customer love',c:'Thank you for sharing your moments with us. Tag us to be featured.'},
+{d:9,p:'Behind',pf:'Instagram',t:'Meet the team',c:'A peek at who makes it all happen every day.'},
+{d:11,p:'Promo',pf:'Facebook',t:'Weekend offer',c:'This weekend only. Message us to claim your offer.'},
+{d:13,p:'Educational',pf:'Instagram',t:'How it works',c:'Step by step, here’s how to get started in under a minute.'},
+{d:16,p:'Community',pf:'Facebook',t:'Poll of the week',c:'Which would you pick? Vote in the comments!'},
+{d:18,p:'Behind',pf:'Instagram',t:'Behind the scenes',c:'How one design goes from sketch to finished post.'},
+{d:20,p:'Promo',pf:'Instagram',t:'Limited stock',c:'Only a few left. Don’t miss out.'},
+{d:23,p:'Educational',pf:'Facebook',t:'FAQ Friday',c:'Your most asked questions, answered in one place.'},
+{d:25,p:'Community',pf:'Instagram',t:'Shout-out',c:'A big thank you to everyone who joined in this month.'},
+{d:27,p:'Promo',pf:'Facebook',t:'Month-end deal',c:'One last offer before the month closes.'}];
+let f=null,sel=0;
+const $=i=>document.getElementById(i);
+function chips(){$('chips').innerHTML=Object.keys(P).map(k=>`<button type="button" class="chip ${f==k?'on':''}" data-k="${k}" aria-pressed="${f==k}"><i style="background:var(${P[k]})"></i>${k}</button>`).join('');
+$('chips').querySelectorAll('.chip').forEach(b=>b.onclick=()=>{f=f==b.dataset.k?null:b.dataset.k;render()})}
+function cal(){let h=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].map(x=>`<div class="dh">${x}</div>`).join('');
+for(let d=1;d<=28;d++){const ps=POSTS.map((p,i)=>[p,i]).filter(x=>x[0].d==d);
+h+=`<div class="day">${d}${ps.map(([p,i])=>`<button type="button" class="post ${sel==i?'sel':''} ${f&&f!=p.p?'dim':''}" data-i="${i}" aria-pressed="${sel==i}" style="background:var(${P[p.p]})">${p.t}</button>`).join('')}</div>`}
+$('cal').innerHTML=h;$('cal').querySelectorAll('.post').forEach(b=>b.onclick=()=>{sel=+b.dataset.i;render()})}
+function prev(){const p=POSTS[sel];$('prev').innerHTML=`<div class="ph-h"><span class="av">A</span>Asynclick · ${p.pf}</div><div class="art" style="background:var(${P[p.p]})">${p.t}</div><div class="cap">${p.c}</div><div class="meta">Day ${p.d} · ${p.p} pillar · scheduled 6:00 PM</div>`}
+function reportHeight(){parent.postMessage({type:'dashboard-height',height:document.documentElement.scrollHeight},'*')}
+function render(){chips();cal();prev();requestAnimationFrame(reportHeight)}
+addEventListener('message',e=>{if(e.source===parent&&e.data?.type==='portfolio-theme'&&(e.data.theme==='dark'||e.data.theme==='light'))document.documentElement.dataset.theme=e.data.theme});
+if('ResizeObserver'in window)new ResizeObserver(reportHeight).observe($('showcase'));
+addEventListener('resize',reportHeight);
+render();
+</script>
+</body>
+</html>

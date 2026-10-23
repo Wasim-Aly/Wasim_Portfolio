@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>Interactive Data Dashboard</title>
+<style>
+:root{--bg:#f6f7f9;--surface:#fff;--text:#14181f;--muted:#5d6675;--border:#e1e5ea;--accent:#2f6fed;--a2:#e8833a;--a3:#2a9d8f;--a4:#8a5cf6;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1318;--surface:#181e26;--text:#eef1f5;--muted:#9aa4b2;--border:#2a323d;--accent:#6c9bff;--a2:#f0a064;--a3:#4cc3b4;--a4:#a98bff;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0f1318;--surface:#181e26;--text:#eef1f5;--muted:#9aa4b2;--border:#2a323d;--accent:#6c9bff;--a2:#f0a064;--a3:#4cc3b4;--a4:#a98bff;color-scheme:dark}
+:root[data-theme="light"]{color-scheme:light}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:1080px;margin:0 auto;padding:20px 16px 24px}
+h1{font-size:1.5rem;margin:0 0 4px}
+.sub{color:var(--muted);margin:0 0 16px;font-size:.9rem}
+.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:16px}
+.chip,select,.reset{font:inherit;font-size:.85rem;border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:999px;padding:6px 12px;cursor:pointer}
+.chip.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.reset{margin-left:auto;color:var(--muted)}
+.grid{display:grid;gap:12px}
+.kpis{grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));margin-bottom:12px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px}
+.k{color:var(--muted);font-size:.78rem;text-transform:uppercase;letter-spacing:.04em}
+.v{font-size:1.5rem;font-weight:650;margin-top:2px}
+.d{font-size:.8rem;color:var(--muted)}
+.two{grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));margin-top:12px}
+h2{font-size:.95rem;margin:0 0 10px}
+svg{width:100%;height:auto;display:block}
+.row{display:grid;grid-template-columns:78px minmax(0,1fr) 64px;gap:8px;align-items:center;margin:7px 0;cursor:pointer;font-size:.85rem}
+.row .t{height:14px;background:var(--border);border-radius:7px;overflow:hidden}
+.row .f{height:100%;border-radius:7px;transition:width .3s}
+.row.dim{opacity:.4}
+.row .n{text-align:right;font-variant-numeric:tabular-nums}
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.85rem;font-variant-numeric:tabular-nums}
+th,td{padding:7px 8px;text-align:right;border-bottom:1px solid var(--border)}
+th:first-child,td:first-child{text-align:left}
+th{color:var(--muted);font-weight:500}
+.note{color:var(--muted);font-size:.78rem;margin:14px 0 0}
+#tip{position:fixed;pointer-events:none;background:var(--text);color:var(--bg);padding:4px 8px;border-radius:6px;font-size:.78rem;opacity:0;z-index:5}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media(max-width:380px){.wrap{padding-inline:10px}.row{grid-template-columns:68px minmax(0,1fr) 58px;gap:6px}.card{padding:11px}}
+</style>
+</head>
+<body>
+<div class="wrap" id="dashboard">
+<h1>Sales Performance Explorer</h1>
+<p class="sub">Interactive exploratory dashboard · filter by year, region or category, or click any bar</p>
+<div class="bar" id="filters" role="group" aria-label="Dashboard filters"></div>
+<div class="grid kpis" id="kpis" aria-live="polite"></div>
+<div class="card"><h2>Monthly sales trend</h2><svg id="line" viewBox="0 0 640 230" role="img" aria-label="Monthly sales trend line chart"></svg></div>
+<div class="grid two">
+<div class="card"><h2>Sales by category</h2><div id="cats"></div></div>
+<div class="card"><h2>Sales by region</h2><div id="regs"></div></div>
+</div>
+<div class="card" style="margin-top:12px"><h2>Region × category heatmap</h2><div class="scroll"><table id="heat" aria-label="Sales by region and category"></table></div></div>
+<p class="note">Illustrative sample data generated for demonstration. No client data or results are represented.</p>
+</div>
+<div id="tip" role="status" aria-live="polite"></div>
+<script>
+const R=['North','South','East','West'],C=['Hardware','Software','Services','Support'],COL=['--accent','--a2','--a3','--a4'];
+const MN=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+let s=7;const rnd=()=>(s=(s*16807)%2147483647)/2147483647;
+const D=[];
+[2024,2025].forEach((y,yi)=>{for(let m=0;m<12;m++)R.forEach((r,ri)=>C.forEach((c,ci)=>{
+const seas=1+.25*Math.sin((m-2)/12*2*Math.PI),g=1+yi*.14+m*.006;
+const sales=Math.round((9000+ri*1800+ci*2600)*seas*g*(.85+rnd()*.3));
+const orders=Math.round(sales/(70+ci*35+rnd()*15));
+D.push({y,m,r,c,sales,orders,cs:3.8+rnd()*1.1+(ci==3?.1:0)});}))});
+const st={y:'All',r:null,c:null};
+const $=id=>document.getElementById(id),tip=$('tip');
+const fmt=n=>n>=1e6?(n/1e6).toFixed(2)+'M':n>=1e3?(n/1e3).toFixed(1)+'K':Math.round(n);
+const col=i=>getComputedStyle(document.documentElement).getPropertyValue(COL[i]);
+const rows=(skipR,skipC)=>D.filter(d=>(st.y=='All'||d.y==st.y)&&(skipR||!st.r||d.r==st.r)&&(skipC||!st.c||d.c==st.c));
+const sum=(a,k)=>a.reduce((t,d)=>t+d[k],0);
+function filters(){
+const f=$('filters');f.innerHTML='';
+const sel=document.createElement('select');sel.setAttribute('aria-label','Filter by year');
+['All',2024,2025].forEach(y=>{const o=new Option(y=='All'?'All years':y,y);if(String(st.y)==String(y))o.selected=true;sel.add(o)});
+sel.onchange=()=>{st.y=sel.value;render()};f.append(sel);
+R.forEach(r=>chip(f,r,st.r==r,()=>{st.r=st.r==r?null:r;render()}));
+C.forEach(c=>chip(f,c,st.c==c,()=>{st.c=st.c==c?null:c;render()}));
+const b=document.createElement('button');b.className='reset';b.textContent='Reset';b.onclick=()=>{st.y='All';st.r=st.c=null;render()};f.append(b);}
+function chip(p,t,on,fn){const b=document.createElement('button');b.className='chip'+(on?' on':'');b.textContent=t;b.setAttribute('aria-pressed',on);b.onclick=fn;p.append(b)}
+function kpis(){
+const a=rows(),sl=sum(a,'sales'),o=sum(a,'orders'),cs=a.reduce((t,d)=>t+d.cs,0)/a.length;
+const items=[['Total sales','$'+fmt(sl),a.length+' records'],['Orders',fmt(o),'completed'],['Avg order value','$'+(sl/o).toFixed(0),'sales ÷ orders'],['Satisfaction',cs.toFixed(2)+' / 5','average rating']];
+$('kpis').innerHTML=items.map(i=>`<div class="card"><div class="k">${i[0]}</div><div class="v">${i[1]}</div><div class="d">${i[2]}</div></div>`).join('');}
+function line(){
+const a=rows(),yrs=st.y=='All'?[2024,2025]:[+st.y],pts=[];
+yrs.forEach(y=>{for(let m=0;m<12;m++)pts.push({l:MN[m]+' '+String(y).slice(2),v:sum(a.filter(d=>d.y==y&&d.m==m),'sales')})});
+const W=640,H=230,p={l:44,r:10,t:10,b:28},mx=Math.max(...pts.map(x=>x.v))*1.1||1;
+const X=i=>p.l+i*(W-p.l-p.r)/(pts.length-1),Y=v=>H-p.b-v/mx*(H-p.t-p.b);
+let g='';for(let i=0;i<=4;i++){const v=mx*i/4,y=Y(v);g+=`<line x1="${p.l}" x2="${W-p.r}" y1="${y}" y2="${y}" stroke="var(--border)"/><text x="${p.l-6}" y="${y+4}" text-anchor="end" font-size="11" fill="var(--muted)">${fmt(v)}</text>`}
+const d=pts.map((x,i)=>(i?'L':'M')+X(i)+' '+Y(x.v)).join(' ');
+const step=pts.length>12?3:1;
+g+=pts.map((x,i)=>i%step==0?`<text x="${X(i)}" y="${H-8}" text-anchor="middle" font-size="11" fill="var(--muted)">${x.l}</text>`:'').join('');
+g+=`<path d="${d} L${X(pts.length-1)} ${H-p.b} L${X(0)} ${H-p.b}Z" fill="var(--accent)" opacity=".12"/><path d="${d}" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linejoin="round"/>`;
+g+=pts.map((x,i)=>`<circle cx="${X(i)}" cy="${Y(x.v)}" r="5" fill="var(--accent)" opacity="0" data-t="${x.l}: $${fmt(x.v)}"/>`).join('');
+$('line').innerHTML=g;
+$('line').querySelectorAll('circle').forEach(c=>{c.onmouseenter=()=>{c.setAttribute('opacity',1);tip.textContent=c.dataset.t;tip.style.opacity=1};c.onmousemove=e=>{tip.style.left=e.clientX+10+'px';tip.style.top=e.clientY-30+'px'};c.onmouseleave=()=>{c.setAttribute('opacity',0);tip.style.opacity=0}});}
+function bars(id,list,key,skip,idx){
+const tot=list.map(n=>sum(rows(key=='r'?true:false,key=='c'?true:false).filter(d=>d[key]==n),'sales')),mx=Math.max(...tot)||1;
+$(`${id}`).innerHTML=list.map((n,i)=>`<div class="row ${st[key]&&st[key]!=n?'dim':''}" data-n="${n}" role="button" tabindex="0" aria-pressed="${st[key]==n}"><span>${n}</span><span class="t"><span class="f" style="display:block;width:${tot[i]/mx*100}%;background:${col(idx?i%4:(key=='r'?i:i))}"></span></span><span class="n">$${fmt(tot[i])}</span></div>`).join('');
+$(`${id}`).querySelectorAll('.row').forEach(r=>{const activate=()=>{st[key]=st[key]==r.dataset.n?null:r.dataset.n;render()};r.onclick=activate;r.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();activate()}}});}
+function heat(){
+const a=rows(),cells=R.map(r=>C.map(c=>sum(a.filter(d=>d.r==r&&d.c==c),'sales'))),mx=Math.max(...cells.flat())||1;
+$('heat').innerHTML=`<thead><tr><th scope="col">Region</th>${C.map(c=>`<th scope="col">${c}</th>`).join('')}<th scope="col">Total</th></tr></thead><tbody>`+R.map((r,i)=>`<tr><th scope="row">${r}</th>${cells[i].map(v=>`<td style="background:color-mix(in srgb,var(--accent) ${Math.round(v/mx*55)}%,transparent)">$${fmt(v)}</td>`).join('')}<td><b>$${fmt(cells[i].reduce((a,b)=>a+b,0))}</b></td></tr>`).join('')+'</tbody>';}
+function render(){filters();kpis();line();bars('cats',C,'c',0,1);bars('regs',R,'r',0,1);heat();reportHeight()}
+function reportHeight(){parent.postMessage({type:'dashboard-height',height:document.documentElement.scrollHeight},'*')}
+addEventListener('message',e=>{if(e.source===parent&&e.data?.type==='portfolio-theme'&&(e.data.theme==='dark'||e.data.theme==='light')){document.documentElement.dataset.theme=e.data.theme}});
+if('ResizeObserver'in window)new ResizeObserver(reportHeight).observe($('dashboard'));
+addEventListener('resize',reportHeight);
+render();
+requestAnimationFrame(reportHeight);
+</script>
+</body>
+</html>

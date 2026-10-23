@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-labelledby="title desc">
+  <title id="title">Threat and Glow brand visual</title>
+  <desc id="desc">Dark charcoal background with a warm gold gradient and centered T and G monogram.</desc>
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f5d98b"/>
+      <stop offset=".48" stop-color="#c99b42"/>
+      <stop offset="1" stop-color="#815b20"/>
+    </linearGradient>
+    <radialGradient id="glow" cx=".5" cy=".44" r=".62">
+      <stop offset="0" stop-color="#997337" stop-opacity=".36"/>
+      <stop offset="1" stop-color="#11120f" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#c99b42" stop-opacity="0"/>
+      <stop offset=".5" stop-color="#e2bf70" stop-opacity=".8"/>
+      <stop offset="1" stop-color="#c99b42" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="#11120f"/>
+  <rect width="800" height="600" fill="url(#glow)"/>
+  <path d="M80 120h640M80 480h640" stroke="url(#line)" stroke-width="1"/>
+  <circle cx="400" cy="294" r="126" fill="none" stroke="#d6b15f" stroke-opacity=".3"/>
+  <circle cx="400" cy="294" r="144" fill="none" stroke="#d6b15f" stroke-opacity=".12"/>
+  <text x="400" y="322" text-anchor="middle" fill="url(#gold)" font-family="Georgia,serif" font-size="92" font-weight="700" letter-spacing="-8">T&amp;G</text>
+  <text x="400" y="380" text-anchor="middle" fill="#d6c39a" font-family="Arial,sans-serif" font-size="13" letter-spacing="5">THREAT AND GLOW GB</text>
+</svg>

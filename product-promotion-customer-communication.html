@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>Product Promotion &amp; Customer Communication</title>
+<style>
+:root{--bg:#f5f7f6;--surface:#fff;--text:#16201d;--muted:#617069;--border:#e0e7e3;--accent:#0f8b6d;--c1:#0f8b6d;--c2:#2f6fed;--c3:#e4572e;--c4:#c98a0a;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1412;--surface:#171f1c;--text:#eef4f1;--muted:#9aa8a1;--border:#2a3530;--accent:#3fcfa6;--c1:#3fcfa6;--c2:#6c9bff;--c3:#ff7a52;--c4:#f0bd48;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0e1412;--surface:#171f1c;--text:#eef4f1;--muted:#9aa8a1;--border:#2a3530;--accent:#3fcfa6;--c1:#3fcfa6;--c2:#6c9bff;--c3:#ff7a52;--c4:#f0bd48;color-scheme:dark}
+:root[data-theme="light"]{color-scheme:light}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:1040px;margin:0 auto;padding:20px 16px 24px}
+h1{font-size:1.6rem;margin:0 0 4px}
+h2{font-size:1rem;margin:0 0 12px}
+.sub{color:var(--muted);margin:0 0 20px;font-size:.92rem}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:14px}
+.flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:10px}
+.step{border:1px solid var(--border);border-radius:10px;padding:12px}
+.step b{display:block;color:var(--accent);font-size:.75rem;letter-spacing:.06em;text-transform:uppercase}
+.step span{font-size:.85rem;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font:inherit;font-size:.82rem;border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:999px;padding:5px 12px;cursor:pointer}
+.chip.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.split{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(min(100%,260px),1fr);gap:14px}
+@media(max-width:760px){.split{grid-template-columns:1fr}}
+.offer{display:flex;gap:10px;align-items:center;width:100%;text-align:left;font:inherit;color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px;margin-bottom:8px;cursor:pointer}
+.offer.sel{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.dot{width:38px;height:38px;border-radius:9px;flex:none}
+.offer b{display:block;font-size:.9rem}
+.offer span{font-size:.78rem;color:var(--muted)}
+.promo{border:1px solid var(--border);border-radius:16px;overflow:hidden}
+.art{padding:28px 20px;color:#fff;text-align:center;min-height:200px;display:grid;place-content:center;gap:6px}
+.art small{letter-spacing:.1em;text-transform:uppercase;font-size:.7rem;opacity:.9}
+.art strong{font-size:1.4rem;line-height:1.2}
+.art em{font-style:normal;background:rgba(255,255,255,.22);padding:3px 12px;border-radius:999px;justify-self:center;font-size:.82rem}
+.cap{padding:12px;font-size:.85rem}
+.meta{padding:0 12px 12px;font-size:.75rem;color:var(--muted)}
+.info{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:14px}
+ul{margin:0;padding-left:18px;color:var(--muted);font-size:.88rem}
+.plan{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.big{font-size:1.6rem;font-weight:650}
+.kv{display:flex;justify-content:space-between;gap:12px;font-size:.88rem;padding:6px 0;border-bottom:1px solid var(--border)}
+.kv span:first-child{color:var(--muted)}
+.msg{border-top:1px solid var(--border);padding:12px 0;display:grid;gap:6px}
+.msg:first-of-type{border-top:0}
+.who{font-size:.8rem;color:var(--muted)}
+.reply{background:var(--bg);border-left:3px solid var(--accent);padding:8px 10px;border-radius:0 8px 8px 0;font-size:.88rem}
+.tag{font-size:.7rem;background:var(--border);padding:2px 8px;border-radius:999px;color:var(--muted);justify-self:start}
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.85rem;min-width:420px}
+th,td{padding:8px;text-align:left;border-bottom:1px solid var(--border)}
+th{color:var(--muted);font-weight:500}
+tbody tr{cursor:pointer}
+tbody tr.sel{background:color-mix(in srgb,var(--accent) 12%,transparent)}
+.st{font-size:.72rem;padding:2px 9px;border-radius:999px;color:#fff;white-space:nowrap}
+.note{color:var(--muted);font-size:.78rem}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media(max-width:380px){.wrap{padding-inline:10px}.card{padding:12px}.kv{font-size:.82rem}}
+</style>
+</head>
+<body>
+<main class="wrap" id="showcase">
+<h1>Product Promotion &amp; Customer Communication</h1>
+<p class="sub">Promotional content, product information and customer follow-up · Jubilee Micro Solutions experience showcase</p>
+
+<section class="card"><h2>My workflow</h2>
+<div class="flow">
+<div class="step"><b>1 · Promote</b><span>Offers and products shared through digital channels.</span></div>
+<div class="step"><b>2 · Inform</b><span>Clear product details so customers know what to expect.</span></div>
+<div class="step"><b>3 · Support</b><span>Prompt, polite answers to customer questions.</span></div>
+<div class="step"><b>4 · Follow up</b><span>Friendly reminders and support on installment plans.</span></div>
+</div></section>
+
+<section class="card"><h2>Promotion planner (sample offers)</h2>
+<div class="chips" id="chips" role="group" aria-label="Filter promotions by channel"></div>
+<div class="split"><div id="offers" aria-label="Promotion examples"></div><div class="promo" id="prev" aria-live="polite"></div></div></section>
+
+<section class="card"><h2>Product information &amp; installment explainer</h2>
+<div class="info">
+<div><b style="font-size:.95rem">Sample product: Home Appliance Set</b>
+<div style="margin-top:8px">
+<div class="kv"><span>Cash price</span><span>Rs. 60,000</span></div>
+<div class="kv"><span>Warranty</span><span>12 months</span></div>
+<div class="kv"><span>Delivery</span><span>Included</span></div>
+<div class="kv"><span>Installment option</span><span>Available</span></div></div></div>
+<div><b style="font-size:.95rem">Choose an installment plan</b>
+<div class="plan" id="plan" role="group" aria-label="Installment duration"></div>
+<div class="big" id="mo" aria-live="polite"></div><div class="note" id="mo2"></div></div>
+</div></section>
+
+<section class="card"><h2>Customer communication (sample replies)</h2>
+<div class="msg"><span class="who">Customer · “What documents do I need for installments?”</span><span class="tag">Product info</span><div class="reply">Thank you for your interest! Please send a copy of your ID and we’ll guide you through the next steps.</div></div>
+<div class="msg"><span class="who">Customer · “Is the offer still available?”</span><span class="tag">Offer question</span><div class="reply">Yes, it’s running until the date shown on the post. Would you like us to reserve one for you?</div></div>
+<div class="msg"><span class="who">Customer · “Can I change my payment date?”</span><span class="tag">Installment</span><div class="reply">Of course, let us check what’s possible and get back to you today.</div></div>
+</section>
+
+<section class="card"><h2>Installment follow-up tracker (sample)</h2>
+<div class="split">
+<div class="scroll" tabindex="0" aria-label="Scrollable installment tracker"><table><thead><tr><th scope="col">Customer</th><th scope="col">Plan</th><th scope="col">Next due</th><th scope="col">Status</th></tr></thead><tbody id="rows"></tbody></table></div>
+<div><div class="who" style="margin-bottom:6px">Reminder message</div><div class="reply" id="rem" aria-live="polite"></div></div>
+</div></section>
+
+<p class="note">All offers, products, prices, names and messages are illustrative samples. This is not original campaign material, and no campaign performance figures are claimed.</p>
+</main>
+<script>
+const CH=['All','Facebook','WhatsApp','Instagram','SMS'];
+const O=[
+{n:'Festival Offer',ch:'Facebook',c:'--c3',h:'Festival Offer',s:'Easy installments',cap:'Celebrate with a special offer on selected products. Ask us about installment options!'},
+{n:'New Arrival',ch:'Instagram',c:'--c2',h:'New Arrival',s:'Now in stock',cap:'Our newest product is here. Message us for details and pricing.'},
+{n:'Limited-Time Deal',ch:'WhatsApp',c:'--c4',h:'Limited-Time Deal',s:'This week only',cap:'Hello! This week we have a special deal. Reply YES and we’ll share the details.'},
+{n:'Payment Reminder',ch:'SMS',c:'--c1',h:'Friendly Reminder',s:'Installment due soon',cap:'Dear customer, your installment is due soon. Thank you for staying with us.'},
+{n:'Bundle Offer',ch:'Facebook',c:'--c1',h:'Bundle Offer',s:'Save when you buy together',cap:'Pick two products and enjoy a bundle price. Visit us or send a message.'}];
+const T=[
+{c:'Customer A',p:'6 months',d:'In 3 days',s:'Due soon',k:'--c4',m:'Hello! A friendly reminder that your installment is due in 3 days. Thank you for your trust. Let us know if you need any help.'},
+{c:'Customer B',p:'12 months',d:'Paid',s:'Paid',k:'--c1',m:'Thank you! We’ve received your payment. We appreciate your timely support.'},
+{c:'Customer C',p:'3 months',d:'2 days ago',s:'Follow up',k:'--c3',m:'Hello! We noticed your installment is pending. Could you let us know a convenient time to complete it? We’re happy to help.'},
+{c:'Customer D',p:'6 months',d:'Next week',s:'Upcoming',k:'--c2',m:'Hello! Just a heads-up that your next installment is due next week. Reach out any time with questions.'}];
+let f='All',so=0,mo=6,st=0;
+const $=i=>document.getElementById(i),cv=k=>`var(${k})`;
+function chips(){$('chips').innerHTML=CH.map(c=>`<button type="button" class="chip ${f==c?'on':''}" data-c="${c}" aria-pressed="${f==c}">${c}</button>`).join('');
+$('chips').querySelectorAll('.chip').forEach(b=>b.onclick=()=>{f=b.dataset.c;const l=O.filter(o=>f=='All'||o.ch==f);if(!l.includes(O[so]))so=O.indexOf(l[0]);render()})}
+function offers(){$('offers').innerHTML=O.map((o,i)=>(f=='All'||o.ch==f)?`<button type="button" class="offer ${so==i?'sel':''}" data-i="${i}" aria-pressed="${so==i}"><span class="dot" style="background:${cv(o.c)}"></span><div><b>${o.n}</b><span>${o.ch} · ${o.s}</span></div></button>`:'').join('');
+$('offers').querySelectorAll('.offer').forEach(b=>b.onclick=()=>{so=+b.dataset.i;render()})}
+function prev(){const o=O[so];$('prev').innerHTML=`<div class="art" style="background:${cv(o.c)}"><small>${o.ch}</small><strong>${o.h}</strong><em>${o.s}</em></div><div class="cap">${o.cap}</div><div class="meta">Planned for ${o.ch} · promotion sample</div>`}
+function plan(){$('plan').innerHTML=[3,6,12].map(m=>`<button type="button" class="chip ${mo==m?'on':''}" data-m="${m}" aria-pressed="${mo==m}">${m} months</button>`).join('');
+$('plan').querySelectorAll('.chip').forEach(b=>b.onclick=()=>{mo=+b.dataset.m;plan();calc()});calc()}
+function calc(){$('mo').textContent='Rs. '+Math.round(60000/mo).toLocaleString('en-US')+' / month';$('mo2').textContent='Sample figure: cash price ÷ '+mo+' months, for illustration only.'}
+function rows(){$('rows').innerHTML=T.map((t,i)=>`<tr class="${st==i?'sel':''}" data-i="${i}" tabindex="0" role="button" aria-pressed="${st==i}"><td>${t.c}</td><td>${t.p}</td><td>${t.d}</td><td><span class="st" style="background:${cv(t.k)}">${t.s}</span></td></tr>`).join('');
+$('rows').querySelectorAll('tr').forEach(r=>{const select=()=>{st=+r.dataset.i;rows();$('rem').textContent=T[st].m};r.onclick=select;r.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();select()}}});$('rem').textContent=T[st].m}
+function reportHeight(){parent.postMessage({type:'dashboard-height',height:document.documentElement.scrollHeight},'*')}
+function render(){chips();offers();prev();requestAnimationFrame(reportHeight)}
+addEventListener('message',e=>{if(e.source===parent&&e.data?.type==='portfolio-theme'&&(e.data.theme==='dark'||e.data.theme==='light'))document.documentElement.dataset.theme=e.data.theme});
+if('ResizeObserver'in window)new ResizeObserver(reportHeight).observe($('showcase'));
+addEventListener('resize',reportHeight);
+render();plan();rows();
+</script>
+</body>
+</html>
