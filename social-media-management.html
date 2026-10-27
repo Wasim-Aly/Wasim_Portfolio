@@ -58,7 +58,7 @@ ul{margin:0;padding-left:18px;color:var(--muted);font-size:.88rem}
 <body>
 <main class="wrap" id="showcase">
 <h1>Social Media Management</h1>
-<p class="sub">Content planning, publishing and audience interaction · Asynclick experience showcase</p>
+<p class="sub">Content planning, publishing and audience interaction · Yasin Click experience showcase</p>
 
 <section class="card"><h2>My workflow</h2>
 <div class="flow">
@@ -113,7 +113,7 @@ function cal(){let h=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].map(x=>`<div cl
 for(let d=1;d<=28;d++){const ps=POSTS.map((p,i)=>[p,i]).filter(x=>x[0].d==d);
 h+=`<div class="day">${d}${ps.map(([p,i])=>`<button type="button" class="post ${sel==i?'sel':''} ${f&&f!=p.p?'dim':''}" data-i="${i}" aria-pressed="${sel==i}" style="background:var(${P[p.p]})">${p.t}</button>`).join('')}</div>`}
 $('cal').innerHTML=h;$('cal').querySelectorAll('.post').forEach(b=>b.onclick=()=>{sel=+b.dataset.i;render()})}
-function prev(){const p=POSTS[sel];$('prev').innerHTML=`<div class="ph-h"><span class="av">A</span>Asynclick · ${p.pf}</div><div class="art" style="background:var(${P[p.p]})">${p.t}</div><div class="cap">${p.c}</div><div class="meta">Day ${p.d} · ${p.p} pillar · scheduled 6:00 PM</div>`}
+function prev(){const p=POSTS[sel];$('prev').innerHTML=`<div class="ph-h"><span class="av">Y</span>Yasin Click · ${p.pf}</div><div class="art" style="background:var(${P[p.p]})">${p.t}</div><div class="cap">${p.c}</div><div class="meta">Day ${p.d} · ${p.p} pillar · scheduled 6:00 PM</div>`}
 function reportHeight(){parent.postMessage({type:'dashboard-height',height:document.documentElement.scrollHeight},'*')}
 function render(){chips();cal();prev();requestAnimationFrame(reportHeight)}
 addEventListener('message',e=>{if(e.source===parent&&e.data?.type==='portfolio-theme'&&(e.data.theme==='dark'||e.data.theme==='light'))document.documentElement.dataset.theme=e.data.theme});

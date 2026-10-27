@@ -283,6 +283,8 @@ h1 { max-width: 12ch; font-size: 3rem; font-weight: 800; margin: 1.1rem 0 1.2rem
 .about-note span { color: var(--cyan); text-transform: uppercase; font-size: .75rem; font-weight: 700; letter-spacing: .08em; }
 .about-note p { margin: .6rem 0 0; font: 700 1.35rem/1.35 var(--f-display); }
 .timeline .sub { margin-top: 0; }
+.experience-group { margin: 0 0 .75rem; color: var(--blue); font-size: 1.15rem; }
+.experience-group:not(:first-child) { margin-top: 1.75rem; }
 .timeline ol { position: relative; padding-left: 1.8rem; display: grid; gap: 1.6rem; }
 .timeline ol::before { content: ""; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 2px; background: linear-gradient(var(--blue), var(--cyan)); opacity: .6; }
 .timeline li { position: relative; }
