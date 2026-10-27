@@ -3,7 +3,7 @@
   const $ = (s, el = document) => el.querySelector(s);
   const $$ = (s, el = document) => [...el.querySelectorAll(s)];
   const cfg = window.SITE_CONFIG || {};
-  const projectFrames = [$("#dashboardFrame"), $("#socialFrame"), $("#promotionFrame"), $("#threadGlowFrame")].filter(Boolean);
+  const projectFrames = [$("#dashboardFrame"), $("#socialFrame"), $("#promotionFrame"), $("#threadGlowFrame"), $("#codeAlphaFrame")].filter(Boolean);
   const syncDashboardTheme = () => {
     projectFrames.forEach(frame => frame.contentWindow?.postMessage({
       type: "portfolio-theme",

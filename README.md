@@ -11,7 +11,7 @@ Double-click `index.html`. (Google Fonts need internet; the site still works off
 3. Your portrait is linked from the project folder as `WhatsApp Image 2026-10-06 at 1.30.26 AM.jpeg`. To change it, update the image path in the hero section of `index.html`.
 
 ## Replace sample work with real projects
-The work section contains interactive showcases for the sales dashboard (`interactive-data-dashboard.html`), Asynclick social media management (`social-media-management.html`), Jubilee Micro Solutions promotion and customer communication (`product-promotion-customer-communication.html`), and Thread & Glow GB startup brand marketing (`thread-glow-brand-marketing.html`). Dashboard figures, social posts, offers, product details, prices, names and sample plans are illustrative and do not claim campaign results. Replace illustrative content with original work samples when available.
+The work section contains interactive showcases for the CodeAlpha digital marketing internship (`codealpha-internship.html`), sales dashboard (`interactive-data-dashboard.html`), Asynclick social media management (`social-media-management.html`), Jubilee Micro Solutions promotion and customer communication (`product-promotion-customer-communication.html`), and Thread & Glow GB startup brand marketing (`thread-glow-brand-marketing.html`). The CodeAlpha showcase links to the three submitted reports in `assets/codealpha/`. Dashboard figures, social posts, offers, product details, prices, names and sample plans are illustrative and do not claim campaign results.
 
 The reviews section is intentionally unscored until you have genuine client feedback. Add quotes or ratings only with the client's permission and never present invented reviews as real.
 

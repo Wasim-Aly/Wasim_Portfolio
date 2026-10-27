@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>Digital Marketing Internship · CodeAlpha</title>
+<style>
+:root{--bg:#f4f6f7;--surface:#fff;--text:#182733;--muted:#60717d;--border:#dce4e8;--accent:#087e8b;--accent-soft:#e3f3f3;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root[data-theme="dark"]{--bg:#10191e;--surface:#19252c;--text:#eaf1f3;--muted:#a6b6bd;--border:#30414a;--accent:#63c8ce;--accent-soft:#1d373b;--second:#f4b76f;color-scheme:dark}
+:root[data-theme="light"]{color-scheme:light}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:1040px;margin:0 auto;padding:20px 16px 28px}
+.hero{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;padding:20px;border:1px solid var(--border);border-radius:14px;background:linear-gradient(135deg,var(--surface),var(--accent-soft))}
+.eyebrow{margin:0 0 6px;color:var(--accent);font-size:.72rem;font-weight:750;letter-spacing:.1em;text-transform:uppercase}
+h1{margin:0;font-size:clamp(1.45rem,4vw,2rem);line-height:1.15}
+.sub{max-width:64ch;margin:8px 0 0;color:var(--muted)}
+.period{flex:none;padding:7px 10px;border:1px solid var(--border);border-radius:99px;background:var(--surface);font-size:.78rem;font-weight:650}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:14px 0}
+.stat,.card{border:1px solid var(--border);border-radius:12px;background:var(--surface)}
+.stat{padding:12px}
+.stat strong{display:block;color:var(--accent);font-size:1.2rem}
+.stat span{color:var(--muted);font-size:.78rem}
+.card{padding:16px;margin-top:12px}
+h2{margin:0 0 12px;font-size:1rem}
+.flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.step{position:relative;min-height:112px;padding:12px;border:1px solid var(--border);border-radius:10px}
+.step b{display:block;margin-bottom:6px;color:var(--accent);font-size:.7rem;letter-spacing:.07em;text-transform:uppercase}
+.step span{color:var(--muted);font-size:.83rem}
+.step:not(:last-child):after{position:absolute;top:50%;right:-9px;z-index:1;content:"›";width:18px;height:18px;border-radius:50%;background:var(--accent);color:#fff;text-align:center;line-height:16px;font-weight:700}
+.deliverables{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.deliverable{display:flex;flex-direction:column;align-items:flex-start;min-height:156px;padding:14px;border:1px solid var(--border);border-radius:10px}
+.number{display:grid;width:28px;height:28px;place-items:center;margin-bottom:12px;border-radius:8px;background:var(--accent-soft);color:var(--accent);font-weight:750}
+.deliverable h3{margin:0 0 6px;font-size:.92rem;line-height:1.3}
+.deliverable p{flex:1;margin:0 0 12px;color:var(--muted);font-size:.8rem}
+.deliverable a{color:var(--accent);font-size:.82rem;font-weight:700;text-decoration-thickness:1px;text-underline-offset:3px}
+.note{margin:12px 0 0;color:var(--muted);font-size:.76rem}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+@media(max-width:680px){.hero{flex-direction:column}.period{white-space:normal}.flow{grid-template-columns:repeat(2,minmax(0,1fr))}.step:after{display:none}}
+@media(max-width:430px){.wrap{padding-inline:10px}.stats{gap:6px}.stat{padding:9px}.stat strong{font-size:1rem}.stat span{font-size:.7rem}.deliverables{grid-template-columns:1fr}.deliverable{min-height:0}.flow{gap:6px}.step{padding:10px}}
+</style>
+</head>
+<body>
+<main class="wrap" id="showcase">
+  <header class="hero">
+    <div>
+      <p class="eyebrow">Digital Marketing Internship · CodeAlpha</p>
+      <h1>Research, strategy and campaign planning</h1>
+      <p class="sub">A one-month internship project with three completed and submitted assignments across social media, SEO and brand strategy.</p>
+    </div>
+    <span class="period">10 Oct – 10 Nov 2026</span>
+  </header>
+
+  <section class="stats" aria-label="Internship overview">
+    <div class="stat"><strong>3</strong><span>Submitted deliverables</span></div>
+    <div class="stat"><strong>1 month</strong><span>Internship period</span></div>
+    <div class="stat"><strong>3 areas</strong><span>Social · SEO · Brand</span></div>
+  </section>
+
+  <section class="card" aria-labelledby="process-title">
+    <h2 id="process-title">Project workflow</h2>
+    <div class="flow">
+      <div class="step"><b>01 · Understand</b><span>Review the assignment brief and define its marketing focus.</span></div>
+      <div class="step"><b>02 · Research</b><span>Explore audience, keywords and brand context.</span></div>
+      <div class="step"><b>03 · Plan</b><span>Shape campaign and brand recommendations.</span></div>
+      <div class="step"><b>04 · Submit</b><span>Prepare and submit the three assignment reports.</span></div>
+    </div>
+  </section>
+
+  <section class="card" aria-labelledby="deliverables-title">
+    <h2 id="deliverables-title">Submitted deliverables</h2>
+    <div class="deliverables">
+      <article class="deliverable">
+        <span class="number" aria-hidden="true">01</span>
+        <h3>Social Media Campaign Design</h3>
+        <p>Campaign concept and social media planning assignment.</p>
+        <a href="assets/codealpha/social-media-campaign.pdf" target="_blank" rel="noopener noreferrer">View submitted report <span aria-hidden="true">↗</span></a>
+      </article>
+      <article class="deliverable">
+        <span class="number" aria-hidden="true">02</span>
+        <h3>SEO &amp; Keyword Research</h3>
+        <p>Search-focused research and keyword assignment.</p>
+        <a href="assets/codealpha/seo-keyword-research.pdf" target="_blank" rel="noopener noreferrer">View submitted report <span aria-hidden="true">↗</span></a>
+      </article>
+      <article class="deliverable">
+        <span class="number" aria-hidden="true">03</span>
+        <h3>Branding Strategy Report</h3>
+        <p>Strategy report focused on CodeAlpha's online presence and engagement.</p>
+        <a href="assets/codealpha/branding-strategy-report.pdf" target="_blank" rel="noopener noreferrer">View submitted report <span aria-hidden="true">↗</span></a>
+      </article>
+    </div>
+    <p class="note">These links share the submitted assignment reports. No live campaign execution or performance results are implied.</p>
+  </section>
+</main>
+<script>
+function reportHeight(){parent.postMessage({type:"dashboard-height",height:document.documentElement.scrollHeight},"*")}
+if("ResizeObserver"in window)new ResizeObserver(reportHeight).observe(document.querySelector("#showcase"));
+addEventListener("resize",reportHeight);
+addEventListener("load",reportHeight);
+addEventListener("message",event=>{if(event.source===parent&&event.data?.type==="portfolio-theme"&&(event.data.theme==="dark"||event.data.theme==="light"))document.documentElement.dataset.theme=event.data.theme});
+</script>
+</body>
+</html>
